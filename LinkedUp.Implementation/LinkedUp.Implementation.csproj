@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LinkedUp.Application\LinkedUp.Application.csproj" />
+    <ProjectReference Include="..\LinkedUp.Domain\LinkedUp.Domain.csproj" />
+    <ProjectReference Include="..\LinkedUp.EfDataAccess\LinkedUp.EfDataAccess.csproj" />
+  </ItemGroup>
+
+</Project>
