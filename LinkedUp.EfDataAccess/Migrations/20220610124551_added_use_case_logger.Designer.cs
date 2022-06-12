@@ -4,14 +4,16 @@ using LinkedUp.EfDataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LinkedUp.EfDataAccess.Migrations
 {
     [DbContext(typeof(LinkedUpContext))]
-    partial class LinkedUpContextModelSnapshot : ModelSnapshot
+    [Migration("20220610124551_added_use_case_logger")]
+    partial class added_use_case_logger
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,28 +137,6 @@ namespace LinkedUp.EfDataAccess.Migrations
                     b.HasIndex("SenderId");
 
                     b.ToTable("Connections");
-                });
-
-            modelBuilder.Entity("LinkedUp.Domain.ExceptionLog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Exception")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ExceptionDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ExceptionType")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ExceptionLogs");
                 });
 
             modelBuilder.Entity("LinkedUp.Domain.Media", b =>

@@ -1,3 +1,8 @@
+using LinkedUp.API.Core;
+using LinkedUp.API.Extensions;
+using LinkedUp.Application.Logging;
+using LinkedUp.Implementation;
+using LinkedUp.Implementation.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,8 +30,19 @@ namespace LinkedUp.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var settings = new AppSettings();
 
+            Configuration.Bind(settings);
+            services.AddSingleton(settings);
+            services.AddApplicationUser();
+            services.AddJwt(settings);
+            services.AddLinkedUpDbContext();
+            services.AddUseCases();
+            services.AddTransient<IUseCaseLogger, EfUseCaseLogger>();
+            services.AddTransient<IExceptionLogger, EfExceptionlogger>();
+            services.AddTransient<UseCaseHandler>();
             services.AddControllers();
+            services.AddHttpContextAccessor();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LinkedUp.API", Version = "v1" });
@@ -44,8 +60,10 @@ namespace LinkedUp.API
             }
 
             app.UseRouting();
-
+            app.UseMiddleware<GlobalExceptionHandler>();
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

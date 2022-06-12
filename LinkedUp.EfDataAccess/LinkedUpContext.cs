@@ -10,14 +10,16 @@ namespace LinkedUp.EfDataAccess
 {
     public class LinkedUpContext : DbContext
     {
-        //public LinkedUpContext(DbContextOptions options) : base(options)
-        //{
+        public LinkedUpContext(DbContextOptions options = null) : base(options)
+        {
 
-        //}
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        }
+        public IApplicationUser User { get; }
+
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-AUKHI58;Initial Catalog=ASP-LinkedUp;Integrated Security=True").UseLazyLoadingProxies();
-        }
+        }*/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
@@ -38,11 +40,11 @@ namespace LinkedUp.EfDataAccess
                             break;
                         case EntityState.Modified:
                             e.UpdatedAt = DateTime.UtcNow;
-                            // e.UpdatedBy = User?.Identity;
+                            e.UpdatedBy = User?.Identity;
                             break;
                         case EntityState.Deleted:
                             e.DeletedAt = DateTime.UtcNow;
-                            //e.DeletedBy = User;
+                            e.DeletedBy = User?.Identity;
                             break;
                     }
                 }
@@ -64,6 +66,7 @@ namespace LinkedUp.EfDataAccess
         public DbSet<UserUseCase> UserUseCases { get; set; }
         public DbSet<Media> Media { get; set; }
         public DbSet<PostMedia> PostMedia { get; set; }
-
+        public DbSet<UseCaseLog> UseCaseLogs { get; set; }
+        public DbSet<ExceptionLog> ExceptionLogs { get; set; }
     }
 }

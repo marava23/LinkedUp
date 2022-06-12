@@ -5,9 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="FluentValidation" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LinkedUp.Application\LinkedUp.Application.csproj" />
     <ProjectReference Include="..\LinkedUp.Domain\LinkedUp.Domain.csproj" />
     <ProjectReference Include="..\LinkedUp.EfDataAccess\LinkedUp.EfDataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Emails\" />
+    <Folder Include="UseCases\Commands\" />
+    <Folder Include="UseCases\Queries\" />
+    <Folder Include="Validators\" />
   </ItemGroup>
 
 </Project>
