@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinkedUp.Application.DataTransfer
 {
-    public class CreateUserDto
+    public class CreateUserDto : BaseDto
     {
         public string Email { get; set; }
         public string FirstName { get; set; }

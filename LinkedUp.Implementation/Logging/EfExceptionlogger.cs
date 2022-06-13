@@ -17,12 +17,12 @@ namespace LinkedUp.Implementation.Logging
 
         public void Log(Exception ex)
         {
-            Context.ExceptionLogs.Add(new ExceptionLog 
+            _context.ExceptionLogs.Add(new ExceptionLog 
             {
                 Exception = ex.Message,
                 ExceptionDateTime = DateTime.UtcNow
             });
-            Context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

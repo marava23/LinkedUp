@@ -1,4 +1,5 @@
 ﻿using LinkedUp.Domain;
+using LinkedUp.Implementation.UseCases;
 using System.Collections.Generic;
 
 namespace LinkedUp.API.Core
@@ -9,7 +10,7 @@ namespace LinkedUp.API.Core
 
         public int Id => 0;
 
-        public IEnumerable<int> UseCaseIds => new List<int> { 4 };
+        public IEnumerable<int> UseCaseIds => new List<int> { (int)UseCasesEnum.EfRegisterUserCommand };
 
         public string Email => "anonimous@asp-api.com";
     }

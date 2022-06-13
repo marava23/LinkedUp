@@ -17,8 +17,8 @@ namespace LinkedUp.Implementation.Logging
 
         public void Log(UseCaseLog log)
         {
-            Context.UseCaseLogs.Add(log);
-            Context.SaveChanges();
+            _context.UseCaseLogs.Add(log);
+            _context.SaveChanges();
         }
     }
 }

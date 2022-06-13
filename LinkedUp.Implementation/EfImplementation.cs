@@ -9,11 +9,11 @@ namespace LinkedUp.Implementation
 {
     public abstract class EfImplementation
     {
-        protected LinkedUpContext Context { get; }
+        protected LinkedUpContext _context { get; }
 
         protected EfImplementation(LinkedUpContext context)
         {
-            Context = context;
+            _context = context;
         }
 
     }

@@ -1,8 +1,11 @@
-﻿using LinkedUp.API.Core;
+﻿using AutoMapper;
+using LinkedUp.API.Core;
 using LinkedUp.Application.UseCases.Users;
 using LinkedUp.Domain;
 using LinkedUp.EfDataAccess;
+using LinkedUp.Implementation.Profiles;
 using LinkedUp.Implementation.UseCases.Users;
+using LinkedUp.Implementation.Validators;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -82,6 +85,10 @@ namespace LinkedUp.API.Extensions
         public static void AddUseCases(this IServiceCollection services)
         {
             services.AddTransient<ICreateUserCommand, EfRegisterUserCommand>();
+
+            //validators 
+
+            services.AddTransient<CreateUserValidator>();
         }
         public static void AddLinkedUpDbContext(this IServiceCollection services)
         {
@@ -93,6 +100,13 @@ namespace LinkedUp.API.Extensions
                 var options = optionsBuilder.Options;
                 return new LinkedUpContext(options);
             });
+        }
+        public static void AddAutoMapper(this IServiceCollection services)
+        {
+            services.AddSingleton(provider => new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new UserProfile());
+            }).CreateMapper());
         }
     }
 }

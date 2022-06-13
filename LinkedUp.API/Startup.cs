@@ -1,8 +1,10 @@
+using AutoMapper;
 using LinkedUp.API.Core;
 using LinkedUp.API.Extensions;
 using LinkedUp.Application.Logging;
 using LinkedUp.Implementation;
 using LinkedUp.Implementation.Logging;
+using LinkedUp.Implementation.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +43,7 @@ namespace LinkedUp.API
             services.AddTransient<IUseCaseLogger, EfUseCaseLogger>();
             services.AddTransient<IExceptionLogger, EfExceptionlogger>();
             services.AddTransient<UseCaseHandler>();
+            services.AddAutoMapper();
             services.AddControllers();
             services.AddHttpContextAccessor();
             services.AddSwaggerGen(c =>
