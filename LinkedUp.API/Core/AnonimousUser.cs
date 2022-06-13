@@ -10,8 +10,15 @@ namespace LinkedUp.API.Core
 
         public int Id => 0;
 
-        public IEnumerable<int> UseCaseIds => new List<int> { (int)UseCasesEnum.EfRegisterUserCommand };
+        public IEnumerable<int> UseCaseIds => new List<int> 
+        {
+            (int)UseCasesEnum.EfRegisterUserCommand,
+            (int)UseCasesEnum.EfGetUsersQuery,
+            (int)UseCasesEnum.EfGetOneUserQuery
+        };
 
         public string Email => "anonimous@asp-api.com";
+
+        public bool IsAdmin => false;
     }
 }

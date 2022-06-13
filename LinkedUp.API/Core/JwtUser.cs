@@ -13,5 +13,6 @@ namespace LinkedUp.API.Core
         public int Id { get; set; }
         public IEnumerable<int> UseCaseIds { get; set; } = new List<int>();
         public string Email { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

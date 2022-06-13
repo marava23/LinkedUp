@@ -46,7 +46,8 @@ namespace LinkedUp.API.Core
                 Id = user.Id,
                 UseCaseIds = user.UseCases.Select(x => x.UseCaseId).ToList(),
                 Identity = user.Email,
-                Email = user.Email
+                Email = user.Email,
+                IsAdmin = user.IsAdmin
             };
 
             var claims = new List<Claim> // Jti : "",
@@ -57,6 +58,7 @@ namespace LinkedUp.API.Core
                 new Claim("UserId", actor.Id.ToString(), ClaimValueTypes.String, _settings.Issuer),
                 new Claim("UseCases", JsonConvert.SerializeObject(actor.UseCaseIds)),
                 new Claim("Email", user.Email),
+                new Claim("Admin", user.IsAdmin.ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.SecretKey));

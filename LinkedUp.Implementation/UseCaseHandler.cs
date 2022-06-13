@@ -52,7 +52,7 @@ namespace LinkedUp.Implementation
             }
         }
 
-        public TResponse HandleQuery<TRequest, TResponse>(IQuery<TRequest, TResponse> query, TRequest data)
+        public TResponse HandleQuery<TRequest, TResponse>(IQuery<TResponse, TRequest> query, TRequest data)
         {
             try
             {

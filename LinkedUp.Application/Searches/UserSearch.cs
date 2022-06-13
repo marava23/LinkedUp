@@ -10,7 +10,7 @@ namespace LinkedUp.Application.Searches
 {
     public class UserSearch : PageSearch
     {
-        [QueryProperties(ComparisonOperator.Contains, "FirstName", "LastName", "Username", "Email")]
+        [QueryProperties(ComparisonOperator.Contains, "FirstName", "LastName", "UserName", "Email")]
         public string Keyword { get; set; }
     }
 }

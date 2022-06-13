@@ -8,6 +8,11 @@ namespace LinkedUp.Implementation.UseCases
 {
     public enum UseCasesEnum
     {
-        EfRegisterUserCommand = 1
+        EfRegisterUserCommand = 1,
+        EfGetUsersQuery = 2,
+        EfGetOneUserQuery = 3,
+        
+        EfDeleteUserCommand = 51,
+        EfUpdateUserCommand = 52
     }
 }

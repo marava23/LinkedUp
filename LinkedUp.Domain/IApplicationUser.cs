@@ -12,5 +12,6 @@ namespace LinkedUp.Domain
         public int Id { get; }
         public IEnumerable<int> UseCaseIds { get; }
         public string Email { get; }
+        public bool IsAdmin { get; }
     }
 }

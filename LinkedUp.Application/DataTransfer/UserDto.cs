@@ -12,13 +12,10 @@ namespace LinkedUp.Application.DataTransfer
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
-        public string Password { get; set; }
-        public int? MediaId { get; set; }
+        public string Image { get; set; }
         public virtual ICollection<PostDto> Posts { get; set; } = new List<PostDto>();
-       // public virtual ICollection<PostIntercation> Intercations { get; set; } = new List<PostIntercation>();
-       // public virtual ICollection<Connection> Sended { get; set; } = new List<Connection>();
-       // public virtual ICollection<Connection> Recieved { get; set; } = new List<Connection>();
-       // public virtual ICollection<UserUseCase> UseCases { get; set; } = new List<UserUseCase>();
-       // public virtual Media Media { get; set; }
+        public virtual ICollection<InteractionDto> Intercations { get; set; } = new List<InteractionDto>();
+        public virtual ICollection<ConnectionDto> Conections { get; set; } = new List<ConnectionDto>();
+        public virtual ICollection<UserUseCaseDto> UseCases { get; set; } = new List<UserUseCaseDto>();
     }
 }

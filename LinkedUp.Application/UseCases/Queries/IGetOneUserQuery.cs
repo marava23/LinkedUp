@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LinkedUp.Application.UseCases.Queries
 {
-    public interface IGetUsersQuery : IQuery<PaginatedResponse<UserDto>, UserSearch>
+    public interface IGetOneUserQuery : IQuery<UserDto, int>
     {
     }
 }

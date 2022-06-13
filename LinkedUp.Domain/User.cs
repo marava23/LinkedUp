@@ -14,6 +14,7 @@ namespace LinkedUp.Domain
         public string UserName { get; set; }
         public string Password { get; set; }
         public int? MediaId { get; set; }
+        public bool IsAdmin { get; set; }
         public virtual ICollection<Post> Posts { get; set; } = new List<Post>();
         public virtual ICollection<PostIntercation> Intercations { get; set; } = new List<PostIntercation>();
         public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();

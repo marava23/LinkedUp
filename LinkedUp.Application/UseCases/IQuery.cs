@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinkedUp.Application.UseCases
 {
-    public interface IQuery<TRequest, TResult> : IUseCase
+    public interface IQuery<TResult, TRequest> : IUseCase
     {
         TResult Execute(TRequest search);
     }

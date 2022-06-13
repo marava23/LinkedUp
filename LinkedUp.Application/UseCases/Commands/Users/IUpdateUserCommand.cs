@@ -1,14 +1,13 @@
 ﻿using LinkedUp.Application.DataTransfer;
-using LinkedUp.Application.Searches;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkedUp.Application.UseCases.Queries
+namespace LinkedUp.Application.UseCases.Commands.Users
 {
-    public interface IGetUsersQuery : IQuery<PaginatedResponse<UserDto>, UserSearch>
+    public interface IUpdateUserCommand : ICommand<CreateUserDto>
     {
     }
 }

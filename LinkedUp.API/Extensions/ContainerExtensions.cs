@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 using LinkedUp.API.Core;
+using LinkedUp.Application.UseCases.Commands.Users;
+using LinkedUp.Application.UseCases.Queries;
 using LinkedUp.Application.UseCases.Users;
 using LinkedUp.Domain;
 using LinkedUp.EfDataAccess;
 using LinkedUp.Implementation.Profiles;
+using LinkedUp.Implementation.UseCases.Commands.Users;
+using LinkedUp.Implementation.UseCases.Queries;
 using LinkedUp.Implementation.UseCases.Users;
 using LinkedUp.Implementation.Validators;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -76,7 +80,8 @@ namespace LinkedUp.API.Extensions
                     Id = Int32.Parse(claims.FindFirst("UserId").Value),
                     Identity = claims.FindFirst("Email").Value,
                     // "[1, 2, 3, 4, 5]"
-                    UseCaseIds = JsonConvert.DeserializeObject<List<int>>(claims.FindFirst("UseCases").Value)
+                    UseCaseIds = JsonConvert.DeserializeObject<List<int>>(claims.FindFirst("UseCases").Value),
+                    IsAdmin = bool.Parse(claims.FindFirst("Admin").Value)
                 };
 
                 return actor;
@@ -85,10 +90,13 @@ namespace LinkedUp.API.Extensions
         public static void AddUseCases(this IServiceCollection services)
         {
             services.AddTransient<ICreateUserCommand, EfRegisterUserCommand>();
-
+            services.AddTransient<IGetUsersQuery, EfGetUsersQuery>();
+            services.AddTransient<IGetOneUserQuery, EfGetOneUserQuery>();
+            services.AddTransient<IDeleteUserCommand, EfDeleteUserCommand>();
             //validators 
 
             services.AddTransient<CreateUserValidator>();
+            services.AddTransient<UpdateUserValidator>();
         }
         public static void AddLinkedUpDbContext(this IServiceCollection services)
         {
@@ -106,6 +114,10 @@ namespace LinkedUp.API.Extensions
             services.AddSingleton(provider => new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new UserProfile());
+                cfg.AddProfile(new ConnectionProfile());
+                cfg.AddProfile(new UserUseCaseProfile());
+                cfg.AddProfile(new InteractionProfile());
+                cfg.AddProfile(new PostProfile());
             }).CreateMapper());
         }
     }

@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Emails\" />
-    <Folder Include="UseCases\Queries\" />
   </ItemGroup>
 
 </Project>

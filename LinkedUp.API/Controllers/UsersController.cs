@@ -1,6 +1,10 @@
 ﻿using LinkedUp.Application.DataTransfer;
+using LinkedUp.Application.Searches;
+using LinkedUp.Application.UseCases.Commands.Users;
+using LinkedUp.Application.UseCases.Queries;
 using LinkedUp.Application.UseCases.Users;
 using LinkedUp.Implementation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -25,16 +29,16 @@ namespace LinkedUp.API.Controllers
 
         // GET: api/<UserController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] UserSearch search, [FromServices] IGetUsersQuery query)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_handler.HandleQuery(query, search));
         }
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id, [FromServices]IGetOneUserQuery query)
         {
-            return "value";
+            return Ok(_handler.HandleQuery(query, id));
         }
 
         // POST api/<UserController>
@@ -46,17 +50,22 @@ namespace LinkedUp.API.Controllers
 
             return StatusCode(StatusCodes.Status201Created);
         }
-
+        [Authorize]
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] CreateUserDto dto, [FromServices]IUpdateUserCommand command)
         {
+            dto.Id = id;
+            _handler.HandleCommand(command, dto);
+            return NoContent();
         }
-
+        [Authorize]
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices]IDeleteUserCommand command)
         {
+            _handler.HandleCommand(command, id);
+            return NoContent();
         }
     }
 }
