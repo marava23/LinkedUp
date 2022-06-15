@@ -13,9 +13,9 @@ namespace LinkedUp.Application.UseCases.Queries
         public int CurrentPage { get; set; }
 
         public int ItemsPerPage { get; set; }
+        public int PagesCount => (int)Math.Ceiling((float)TotalCount / ItemsPerPage);
 
         public IEnumerable<T> Items { get; set; }
 
-        public int PagesCount => (int)Math.Ceiling((float)TotalCount / ItemsPerPage);
     }
 }

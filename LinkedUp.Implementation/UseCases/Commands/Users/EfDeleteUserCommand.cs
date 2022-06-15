@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LinkedUp.Implementation.UseCases.Commands.Users
 {
-    public class EfDeleteUserCommand : EfGenericDeleteOwn<User>, IDeleteUserCommand
+    public class EfDeleteUserCommand : EfGenericDelete<User>, IDeleteUserCommand
     {
         public EfDeleteUserCommand(LinkedUpContext context, IApplicationUser user) : base(context, user)
         {
@@ -17,7 +17,7 @@ namespace LinkedUp.Implementation.UseCases.Commands.Users
 
         public override int Id => (int)UseCasesEnum.EfDeleteUserCommand;
 
-        public override string Name => "EfDelete (own or admin) user command";
+        public override string Name => "EfDelete user command";
 
         public override string Description => "";
     }

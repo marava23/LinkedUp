@@ -13,8 +13,11 @@ namespace LinkedUp.Implementation.Profiles
     {
         public PostProfile()
         {
-            CreateMap<Post, PostDto>();
+            CreateMap<Post, PostDto>()
+                .ForMember(x=> x.Author, x=> x.MapFrom(x=> x.Author.UserName));
             CreateMap<PostDto, Post>();
+            CreateMap<CreatePostDto, Post>();
+            CreateMap<Post, CreatePostDto>();
         }
     }
 }

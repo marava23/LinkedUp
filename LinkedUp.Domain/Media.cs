@@ -11,7 +11,6 @@ namespace LinkedUp.Domain
         public MediaType MediaType { get; set; }
         public string Path { get; set; }
         public double Size { get; set; }
-        public int PostId { get; set; }
         public virtual ICollection<PostMedia> PostMedia { get; set; } = new List<PostMedia>();
         public virtual User User { get; set; }
 

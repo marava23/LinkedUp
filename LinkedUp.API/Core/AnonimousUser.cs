@@ -14,7 +14,10 @@ namespace LinkedUp.API.Core
         {
             (int)UseCasesEnum.EfRegisterUserCommand,
             (int)UseCasesEnum.EfGetUsersQuery,
-            (int)UseCasesEnum.EfGetOneUserQuery
+            (int)UseCasesEnum.EfGetOneUserQuery,
+            (int)UseCasesEnum.EfGetPostsQuery,
+            (int)UseCasesEnum.EfGetOnePostQuery
+            
         };
 
         public string Email => "anonimous@asp-api.com";

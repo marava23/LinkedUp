@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinkedUp.Domain
 {
-    public class PostIntercation
+    public class PostIntercation : Entity
     {
         public int Id { get; set; }
         public int PostId { get; set; }

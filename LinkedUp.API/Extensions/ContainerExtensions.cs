@@ -1,13 +1,20 @@
 ﻿using AutoMapper;
 using LinkedUp.API.Core;
+using LinkedUp.API.UploadFiles;
+using LinkedUp.Application.UseCases.Commands.Interaction;
+using LinkedUp.Application.UseCases.Commands.Posts;
 using LinkedUp.Application.UseCases.Commands.Users;
 using LinkedUp.Application.UseCases.Queries;
+using LinkedUp.Application.UseCases.Queries.Posts;
 using LinkedUp.Application.UseCases.Users;
 using LinkedUp.Domain;
 using LinkedUp.EfDataAccess;
 using LinkedUp.Implementation.Profiles;
+using LinkedUp.Implementation.UseCases.Commands.Interactions;
+using LinkedUp.Implementation.UseCases.Commands.Posts;
 using LinkedUp.Implementation.UseCases.Commands.Users;
 using LinkedUp.Implementation.UseCases.Queries;
+using LinkedUp.Implementation.UseCases.Queries.Posts;
 using LinkedUp.Implementation.UseCases.Users;
 using LinkedUp.Implementation.Validators;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -93,10 +100,22 @@ namespace LinkedUp.API.Extensions
             services.AddTransient<IGetUsersQuery, EfGetUsersQuery>();
             services.AddTransient<IGetOneUserQuery, EfGetOneUserQuery>();
             services.AddTransient<IDeleteUserCommand, EfDeleteUserCommand>();
+            services.AddTransient<IUpdateUserCommand, EfUpdateUserCommand>();
+            services.AddTransient<IGetPostsQuery, EfGetPostsQuery>();
+            services.AddTransient<IGetOnePostQuery, EfGetOnePostQuery>();
+            services.AddTransient<IUploadFile, UploadFile>();
+            services.AddTransient<ICreatePostCommand, EfCreatePostCommand>();
+            services.AddTransient<IDeletePostCommand, EfDeletePostCommand>();
+            services.AddTransient<ICreateInteractionCommand, EfCreateInteractionCommand>();
+            services.AddTransient<IDeleteInteractionCommand, EfDeleteInteractionCommand>();
+            services.AddTransient<ISearchLogsQuery, EfSearchLogsQuery>();
             //validators 
 
             services.AddTransient<CreateUserValidator>();
             services.AddTransient<UpdateUserValidator>();
+            services.AddTransient<CreatePostValidator>();
+            services.AddTransient<CreateInteractionValidator>();
+            
         }
         public static void AddLinkedUpDbContext(this IServiceCollection services)
         {
@@ -118,6 +137,7 @@ namespace LinkedUp.API.Extensions
                 cfg.AddProfile(new UserUseCaseProfile());
                 cfg.AddProfile(new InteractionProfile());
                 cfg.AddProfile(new PostProfile());
+                cfg.AddProfile(new MediaProfil());
             }).CreateMapper());
         }
     }

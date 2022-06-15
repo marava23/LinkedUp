@@ -1,0 +1,13 @@
+﻿using LinkedUp.Application.DataTransfer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LinkedUp.Application.UseCases.Commands.Posts
+{
+    public interface ICreatePostCommand : ICommand<CreatePostDto>
+    {
+    }
+}
