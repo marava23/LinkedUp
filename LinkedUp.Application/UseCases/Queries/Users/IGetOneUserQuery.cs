@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LinkedUp.Application.UseCases.Queries
 {
-    public interface IGetOneUserQuery : IQuery<UserDto, int>
+    public interface IGetOneUserQuery : IQuery<OneUserDto, int>
     {
     }
 }

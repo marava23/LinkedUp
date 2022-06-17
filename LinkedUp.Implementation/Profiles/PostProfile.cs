@@ -18,6 +18,8 @@ namespace LinkedUp.Implementation.Profiles
             CreateMap<PostDto, Post>();
             CreateMap<CreatePostDto, Post>();
             CreateMap<Post, CreatePostDto>();
+            CreateMap<Post, PostShortDto>()
+                .ForMember(x => x.Author, x => x.MapFrom(x => x.Author.UserName));
         }
     }
 }

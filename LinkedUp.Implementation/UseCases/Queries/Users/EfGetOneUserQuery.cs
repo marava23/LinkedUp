@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace LinkedUp.Implementation.UseCases.Queries
 {
-    public class EfGetOneUserQuery : EfGenericGetSingle<User, UserDto>, IGetOneUserQuery
+    public class EfGetOneUserQuery : EfGenericGetSingle<User, OneUserDto>, IGetOneUserQuery
     {
         public EfGetOneUserQuery(LinkedUpContext context, IMapper mapper, IApplicationUser user) : base(context, mapper, user)
         {

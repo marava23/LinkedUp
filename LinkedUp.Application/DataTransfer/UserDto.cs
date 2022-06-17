@@ -13,9 +13,21 @@ namespace LinkedUp.Application.DataTransfer
         public string LastName { get; set; }
         public string UserName { get; set; }
         public string Image { get; set; }
-        public virtual ICollection<PostDto> Posts { get; set; } = new List<PostDto>();
+        public virtual ICollection<PostShortDto> Posts { get; set; } = new List<PostShortDto>();
+
+    }
+    
+    public class OneUserDto : UserDto
+    {
         public virtual ICollection<InteractionDto> Intercations { get; set; } = new List<InteractionDto>();
-        public virtual ICollection<ConnectionDto> Conections { get; set; } = new List<ConnectionDto>();
         public virtual ICollection<UserUseCaseDto> UseCases { get; set; } = new List<UserUseCaseDto>();
+    }
+
+    public class PostShortDto : BaseDto
+    {
+        public string Content { get; set; }
+        public int? PostId { get; set; }
+        public int UserId { get; set; }
+        public string Author { get; set; }
     }
 }

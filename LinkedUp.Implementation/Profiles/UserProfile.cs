@@ -14,6 +14,7 @@ namespace LinkedUp.Implementation.Profiles
         public UserProfile()
         {
             CreateMap<User, UserDto>();
+            CreateMap<User, OneUserDto>();
             CreateMap<UserDto, User>();
             CreateMap<CreateUserDto, User>()
                .ForMember(x => x.Password, x => x.MapFrom(y => BCrypt.Net.BCrypt.HashPassword(y.Password)));
