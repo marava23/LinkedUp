@@ -14,11 +14,11 @@ namespace LinkedUp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LogController : ControllerBase
     {
         // GET: api/<LogController>
         [HttpGet]
-        [Authorize]
         public IActionResult Get([FromServices]UseCaseHandler handler,
                                  [FromServices] ISearchLogsQuery query,
                                  [FromQuery] SearchLogsDto search)
