@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using LinkedUp.Application.DataTransfer;
+using LinkedUp.Application.Emails;
 using LinkedUp.Application.UseCases;
 using LinkedUp.Application.UseCases.Users;
 using LinkedUp.Domain;
@@ -18,10 +19,13 @@ namespace LinkedUp.Implementation.UseCases.Users
     {
         private readonly IMapper _mapper;
         private readonly CreateUserValidator _validator;
-        public EfRegisterUserCommand(LinkedUpContext context, IMapper mapper, CreateUserValidator validator) : base(context)
+        private readonly IEmailSender _sender;
+
+        public EfRegisterUserCommand(LinkedUpContext context, IMapper mapper, CreateUserValidator validator, IEmailSender sender) : base(context)
         {
             _mapper = mapper;
             _validator = validator;
+            _sender = sender;
         }
 
 
@@ -39,6 +43,14 @@ namespace LinkedUp.Implementation.UseCases.Users
             
             _context.Users.Add(user);
             _context.SaveChanges();
+
+            
+           /* _sender.Send(new MessageDto
+            {
+                To = request.Email,
+                Title = "Successfull registration!",
+                Body = "Dear " + request.UserName + "\n Please activate your account...."
+            });*/
         }
     }
 }

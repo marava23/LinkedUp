@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace LinkedUp.Application.Emails
 {
-    public interface IEmailSender
+    public class MessageDto
     {
-        void Send(MessageDto message);
+        public string To { get; set; }
+        public string Title { get; set; }
+        public string Body { get; set; }
     }
 }

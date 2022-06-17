@@ -1,8 +1,10 @@
 using AutoMapper;
 using LinkedUp.API.Core;
 using LinkedUp.API.Extensions;
+using LinkedUp.Application.Emails;
 using LinkedUp.Application.Logging;
 using LinkedUp.Implementation;
+using LinkedUp.Implementation.Emails;
 using LinkedUp.Implementation.Logging;
 using LinkedUp.Implementation.Profiles;
 using Microsoft.AspNetCore.Builder;
@@ -45,6 +47,11 @@ namespace LinkedUp.API
             services.AddTransient<IUseCaseLogger, EfUseCaseLogger>();
             services.AddTransient<IExceptionLogger, EfExceptionlogger>();
             services.AddTransient<UseCaseHandler>();
+            services.AddTransient<IEmailSender>(x =>
+            new SmtpEmailSender(settings.EmailOptions.FromEmail,
+                                settings.EmailOptions.Password,
+                                settings.EmailOptions.Port,
+                                settings.EmailOptions.Host));
             services.AddAutoMapper();
             services.AddControllers();
             services.AddHttpContextAccessor();
